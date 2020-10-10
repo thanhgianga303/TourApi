@@ -134,3 +134,5 @@ E:\TourApi\TourApi\obj\Debug\netcoreapp3.1\TourApi.pdb
 E:\TourApi\TourApi\obj\Debug\netcoreapp3.1\TourApi.genruntimeconfig.cache
 E:\TourApi\TourApi\obj\Debug\netcoreapp3.1\staticwebassets\TourApi.StaticWebAssets.Manifest.cache
 E:\TourApi\TourApi\obj\Debug\netcoreapp3.1\staticwebassets\TourApi.StaticWebAssets.xml
+E:\TourApi\TourApi\bin\Debug\netcoreapp3.1\AutoMapper.dll
+E:\TourApi\TourApi\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

@@ -11,8 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
-
+using AutoMapper;
 using TourApi.Data;
+using TourApi.Model.IRepository;
+using TourApi.Data.Repository;
+using TourApi.Mapping;
 
 namespace TourApi
 {
@@ -36,6 +39,8 @@ namespace TourApi
 
                 options.UseLazyLoadingProxies();
             });
+            services.AddAutoMapper(typeof(MappingProfile));
+            services.AddScoped<ICostRepository, CostRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +50,11 @@ namespace TourApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
