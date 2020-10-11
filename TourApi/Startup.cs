@@ -43,6 +43,7 @@ namespace TourApi
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<ICostRepository, CostRepository>();
             services.AddScoped<ITourPriceRepository, TourPriceRepository>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

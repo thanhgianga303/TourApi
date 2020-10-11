@@ -17,6 +17,12 @@ namespace TourApi.Mapping
 
             CreateMap<TourPrice, TourPriceDTO>();
             CreateMap<TourPriceDTO, TourPrice>();
+
+            CreateMap<Location, LocationDTO>();
+            CreateMap<LocationDTO, Location>();
+
+            CreateMap<TypesOfTourism, TypesOfTourismDTO>();
+            CreateMap<TypesOfTourismDTO, TypesOfTourism>();
         }
     }
 }
