@@ -10,6 +10,6 @@ namespace TourApi.DTOs
         public int Price { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public virtual List<Tour> TourList { get; set; }
+        public List<Tour> TourList { get; set; }
     }
 }
