@@ -17,6 +17,7 @@ using TourApi.Models.IRepository;
 using TourApi.Data.Repository;
 using TourApi.Mapping;
 
+
 namespace TourApi
 {
     public class Startup
@@ -41,6 +42,7 @@ namespace TourApi
             });
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddScoped<ICostRepository, CostRepository>();
+            services.AddScoped<ITourPriceRepository, TourPriceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

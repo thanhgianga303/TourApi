@@ -70,13 +70,13 @@ namespace TourApi.Migrations
                 name: "Task",
                 columns: table => new
                 {
-                    TaskId = table.Column<int>(nullable: false)
+                    JobId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    TaskName = table.Column<string>(nullable: true)
+                    JobName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Task", x => x.TaskId);
+                    table.PrimaryKey("PK_Task", x => x.JobId);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,6 +85,7 @@ namespace TourApi.Migrations
                 {
                     TourPriceId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Price = table.Column<int>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false)
                 },
@@ -136,23 +137,23 @@ namespace TourApi.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     DutyId = table.Column<int>(nullable: false),
                     StaffId = table.Column<int>(nullable: false),
-                    TaskId = table.Column<int>(nullable: true)
+                    JobId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TaskDetails", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TaskDetails_Task_JobId",
+                        column: x => x.JobId,
+                        principalTable: "Task",
+                        principalColumn: "JobId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TaskDetails_Staffs_StaffId",
                         column: x => x.StaffId,
                         principalTable: "Staffs",
                         principalColumn: "StaffId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TaskDetails_Task_TaskId",
-                        column: x => x.TaskId,
-                        principalTable: "Task",
-                        principalColumn: "TaskId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -328,14 +329,14 @@ namespace TourApi.Migrations
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TaskDetails_JobId",
+                table: "TaskDetails",
+                column: "JobId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TaskDetails_StaffId",
                 table: "TaskDetails",
                 column: "StaffId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TaskDetails_TaskId",
-                table: "TaskDetails",
-                column: "TaskId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TourDetails_LocationId",

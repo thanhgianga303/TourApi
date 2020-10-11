@@ -51,7 +51,7 @@ namespace TourApi.Controllers
             return CreatedAtAction(nameof(GetCost), new { id = cost.CostId }, cost);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, CostDTO costDTO)
+        public async Task<IActionResult> UpdateCost(int id, CostDTO costDTO)
         {
             if (id != costDTO.CostId)
             {
@@ -78,14 +78,14 @@ namespace TourApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCost(int id)
         {
-            if (!await CostExists(id))
-            {
-                return NotFound();
-            }
-            else
+            if (await CostExists(id))
             {
                 await _costRepository.Delete(id);
                 return NoContent();
+            }
+            else
+            {
+                return NotFound();
             }
         }
         //Chưa test post man

@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using TourApi.Models;
 
-namespace TourApi.Models
+namespace TourApi.DTOs
 {
-    public class TourPrice
+    public class TourPriceDTO
     {
         public int TourPriceId { get; set; }
         public int Price { get; set; }

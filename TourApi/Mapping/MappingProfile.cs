@@ -14,6 +14,9 @@ namespace TourApi.Mapping
 
             CreateMap<CostDetailsDTO, CostDetails>();
             CreateMap<CostDetails, CostDetailsDTO>();
+
+            CreateMap<TourPrice, TourPriceDTO>();
+            CreateMap<TourPriceDTO, TourPrice>();
         }
     }
 }
