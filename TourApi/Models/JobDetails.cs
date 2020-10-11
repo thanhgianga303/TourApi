@@ -1,4 +1,4 @@
-namespace TourApi.Model
+namespace TourApi.Models
 {
     public class JobDetails
     {

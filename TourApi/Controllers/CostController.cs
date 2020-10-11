@@ -4,8 +4,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TourApi.DTOs;
-using TourApi.Model;
-using TourApi.Model.IRepository;
+using TourApi.Models;
+using TourApi.Models.IRepository;
 
 namespace TourApi.Controllers
 {
@@ -26,6 +26,14 @@ namespace TourApi.Controllers
             var costs = await _costRepository.GetAll();
             var costsDTO = _mapper.Map<IEnumerable<Cost>, IEnumerable<CostDTO>>(costs);
             return Ok(costsDTO);
+        }
+        //Chưa test post man
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<CostDTO>>> GetAllCostDetails(int costId)
+        {
+            var costdetailsList = await _costRepository.GetAllCostDetails(costId);
+            var costdetailsListDTO = _mapper.Map<IEnumerable<CostDetails>, IEnumerable<CostDetailsDTO>>(costdetailsList);
+            return Ok(costdetailsListDTO);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<CostDTO>> GetCost(int id)
@@ -80,10 +88,37 @@ namespace TourApi.Controllers
                 return NoContent();
             }
         }
+        //Chưa test post man
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCostDetails(int id)
+        {
+            if (await CostDetailsExists(id))
+            {
+                await _costRepository.DeleteCostDetails(id);
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
         private async Task<bool> CostExists(int id)
         {
             var cost = await _costRepository.GetBy(id);
             if (cost != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private async Task<bool> CostDetailsExists(int id)
+        {
+            var costDetails = await _costRepository.GetAllCostDetails(id);
+            if (costDetails != null)
             {
                 return true;
             }

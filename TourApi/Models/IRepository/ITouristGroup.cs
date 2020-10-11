@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TourApi.Infrastructure;
 
-namespace TourApi.Model.IRepository
+namespace TourApi.Models.IRepository
 {
     public interface ITouristGroupRepository : IRepository<TouristGroup>
     {

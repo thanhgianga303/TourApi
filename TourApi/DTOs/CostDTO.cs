@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using TourApi.Model;
+using TourApi.Models;
 
 namespace TourApi.DTOs
 {

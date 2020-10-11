@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using TourApi.Model;
+using TourApi.Models;
 
 namespace TourApi.Data
 {

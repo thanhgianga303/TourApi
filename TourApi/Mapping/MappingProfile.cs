@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using TourApi.DTOs;
-using TourApi.Model;
+using TourApi.Models;
 
 namespace TourApi.Mapping
 {
@@ -11,6 +11,9 @@ namespace TourApi.Mapping
         {
             CreateMap<CostDTO, Cost>();
             CreateMap<Cost, CostDTO>();
+
+            CreateMap<CostDetailsDTO, CostDetails>();
+            CreateMap<CostDetails, CostDetailsDTO>();
         }
     }
 }

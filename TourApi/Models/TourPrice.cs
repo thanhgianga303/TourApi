@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TourApi.Model
+namespace TourApi.Models
 {
     public class TourPrice
     {

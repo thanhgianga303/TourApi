@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using TourApi.Data;
-using TourApi.Model.IRepository;
+using TourApi.Models.IRepository;
 using TourApi.Data.Repository;
 using TourApi.Mapping;
 
