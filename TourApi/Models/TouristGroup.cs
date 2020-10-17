@@ -13,5 +13,7 @@ namespace TourApi.Models
         public int TourId { get; set; }
         public virtual Tour Tour { get; set; }
         public virtual List<CostDetails> CostDetailsList { get; set; }
+        public virtual List<TourDetailsOfStaff> TourDetailsOfStaffList { get; set; }
+        public virtual List<TourDetailsOfCustomer> TourDetailsOfCustomerList { get; set; }
     }
 }

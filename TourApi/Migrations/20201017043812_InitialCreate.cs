@@ -212,58 +212,6 @@ namespace TourApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TourDetailsOfCustomer",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    CustomerId = table.Column<int>(nullable: false),
-                    TourId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TourDetailsOfCustomer", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TourDetailsOfCustomer_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TourDetailsOfCustomer_Tours_TourId",
-                        column: x => x.TourId,
-                        principalTable: "Tours",
-                        principalColumn: "TourId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TourDetailsOfStaff",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    StaffId = table.Column<int>(nullable: false),
-                    TourId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TourDetailsOfStaff", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TourDetailsOfStaff_Staffs_StaffId",
-                        column: x => x.StaffId,
-                        principalTable: "Staffs",
-                        principalColumn: "StaffId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TourDetailsOfStaff_Tours_TourId",
-                        column: x => x.TourId,
-                        principalTable: "Tours",
-                        principalColumn: "TourId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TouristGroup",
                 columns: table => new
                 {
@@ -313,6 +261,60 @@ namespace TourApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TourDetailsOfCustomer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CustomerId = table.Column<int>(nullable: false),
+                    GroupId = table.Column<int>(nullable: false),
+                    TouristGroupId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TourDetailsOfCustomer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TourDetailsOfCustomer_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TourDetailsOfCustomer_TouristGroup_TouristGroupId",
+                        column: x => x.TouristGroupId,
+                        principalTable: "TouristGroup",
+                        principalColumn: "TouristGroupId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TourDetailsOfStaff",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    StaffId = table.Column<int>(nullable: false),
+                    GroupId = table.Column<int>(nullable: false),
+                    TouristGroupId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TourDetailsOfStaff", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TourDetailsOfStaff_Staffs_StaffId",
+                        column: x => x.StaffId,
+                        principalTable: "Staffs",
+                        principalColumn: "StaffId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TourDetailsOfStaff_TouristGroup_TouristGroupId",
+                        column: x => x.TouristGroupId,
+                        principalTable: "TouristGroup",
+                        principalColumn: "TouristGroupId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CostDetails_CostId",
                 table: "CostDetails",
@@ -354,9 +356,9 @@ namespace TourApi.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TourDetailsOfCustomer_TourId",
+                name: "IX_TourDetailsOfCustomer_TouristGroupId",
                 table: "TourDetailsOfCustomer",
-                column: "TourId");
+                column: "TouristGroupId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TourDetailsOfStaff_StaffId",
@@ -364,9 +366,9 @@ namespace TourApi.Migrations
                 column: "StaffId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TourDetailsOfStaff_TourId",
+                name: "IX_TourDetailsOfStaff_TouristGroupId",
                 table: "TourDetailsOfStaff",
-                column: "TourId");
+                column: "TouristGroupId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TouristGroup_TourId",
@@ -408,9 +410,6 @@ namespace TourApi.Migrations
                 name: "Costs");
 
             migrationBuilder.DropTable(
-                name: "TouristGroup");
-
-            migrationBuilder.DropTable(
                 name: "Task");
 
             migrationBuilder.DropTable(
@@ -421,6 +420,9 @@ namespace TourApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Staffs");
+
+            migrationBuilder.DropTable(
+                name: "TouristGroup");
 
             migrationBuilder.DropTable(
                 name: "Tours");

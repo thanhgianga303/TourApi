@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -91,6 +93,71 @@ namespace TourApi.Controllers
             else
             {
                 return false;
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateHotel(HotelDTO hotelDto)
+        {
+            var hotel = _mapper.Map<HotelDTO, Hotel>(hotelDto);
+            await _locationRepository.AddHotel(hotel);
+            return CreatedAtAction(nameof(GetHotel), new { id = hotel.HotelId }, hotel);
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<HotelDTO>> GetHotel(int id)
+        {
+            var hotel = await _locationRepository.GetHotel(id);
+
+            var hotelDTO = _mapper.Map<Hotel, HotelDTO>(hotel);
+            return Ok(hotelDTO);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateHotel(int id, HotelDTO hotelDTO)
+        {
+            if (id != hotelDTO.HotelId)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var hotel = _mapper.Map<HotelDTO, Hotel>(hotelDTO);
+                await _locationRepository.UpdateHotel(hotel);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!await HotelExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+        private async Task<bool> HotelExists(int id)
+        {
+            var hotel = await _locationRepository.GetHotel(id);
+            if (hotel != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteHotel(int id)
+        {
+            if (await HotelExists(id))
+            {
+                await _locationRepository.DeleteHotel(id);
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
             }
         }
 
