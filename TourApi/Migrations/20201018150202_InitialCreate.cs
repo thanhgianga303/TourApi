@@ -164,9 +164,8 @@ namespace TourApi.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     TourName = table.Column<string>(nullable: true),
                     TourCharacteristics = table.Column<string>(nullable: true),
-                    TypeId = table.Column<int>(nullable: false),
-                    TourPriceId = table.Column<int>(nullable: false),
-                    TypesOfTourismId = table.Column<int>(nullable: true)
+                    TypesOfTourismId = table.Column<int>(nullable: false),
+                    TourPriceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -182,7 +181,7 @@ namespace TourApi.Migrations
                         column: x => x.TypesOfTourismId,
                         principalTable: "TypesOfTourism",
                         principalColumn: "TypesOfTourismId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

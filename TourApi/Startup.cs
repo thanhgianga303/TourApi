@@ -50,6 +50,7 @@ namespace TourApi
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IJobRepository, JobRepository>();
             services.AddScoped<ITouristGroupRepository, TouristGroupRepository>();
+            services.AddScoped<ITourRepository, TourRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -195,10 +195,7 @@ namespace TourApi.Migrations
                     b.Property<int>("TourPriceId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("TypesOfTourismId")
+                    b.Property<int>("TypesOfTourismId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("TourId");
@@ -388,7 +385,9 @@ namespace TourApi.Migrations
 
                     b.HasOne("TourApi.Models.TypesOfTourism", "TypesOfTourism")
                         .WithMany("TourList")
-                        .HasForeignKey("TypesOfTourismId");
+                        .HasForeignKey("TypesOfTourismId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TourApi.Models.TourDetails", b =>
