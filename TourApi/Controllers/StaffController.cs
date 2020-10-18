@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -91,6 +92,14 @@ namespace TourApi.Controllers
             {
                 return NotFound();
             }
+        }
+        //JobDetails
+        [HttpPost]
+        public async Task<IActionResult> CreateJobDetails(List<JobDetailsDTO> listJobDetailsDto)
+        {
+            var listJobDetails = _mapper.Map<IEnumerable<JobDetailsDTO>, IEnumerable<JobDetails>>(listJobDetailsDto);
+            await _repository.AddJobDetails(listJobDetails.ToList());
+            return Ok(listJobDetails);
         }
     }
 }

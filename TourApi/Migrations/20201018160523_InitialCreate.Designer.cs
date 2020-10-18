@@ -9,7 +9,7 @@ using TourApi.Data;
 namespace TourApi.Migrations
 {
     [DbContext(typeof(TourContext))]
-    [Migration("20201018150202_InitialCreate")]
+    [Migration("20201018160523_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,7 +118,7 @@ namespace TourApi.Migrations
 
                     b.HasKey("JobId");
 
-                    b.ToTable("Task");
+                    b.ToTable("Job");
                 });
 
             modelBuilder.Entity("TourApi.Models.JobDetails", b =>
@@ -127,10 +127,7 @@ namespace TourApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("DutyId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("JobId")
+                    b.Property<int>("JobId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("StaffId")
@@ -142,7 +139,7 @@ namespace TourApi.Migrations
 
                     b.HasIndex("StaffId");
 
-                    b.ToTable("TaskDetails");
+                    b.ToTable("JobDetails");
                 });
 
             modelBuilder.Entity("TourApi.Models.Location", b =>
@@ -368,7 +365,9 @@ namespace TourApi.Migrations
                 {
                     b.HasOne("TourApi.Models.Job", "Job")
                         .WithMany("JobDetailsList")
-                        .HasForeignKey("JobId");
+                        .HasForeignKey("JobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TourApi.Models.Staff", "Staff")
                         .WithMany("JobDetailsList")

@@ -38,6 +38,19 @@ namespace TourApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Job",
+                columns: table => new
+                {
+                    JobId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    JobName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Job", x => x.JobId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Locations",
                 columns: table => new
                 {
@@ -64,19 +77,6 @@ namespace TourApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Staffs", x => x.StaffId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Task",
-                columns: table => new
-                {
-                    JobId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    JobName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Task", x => x.JobId);
                 });
 
             migrationBuilder.CreateTable(
@@ -130,26 +130,25 @@ namespace TourApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TaskDetails",
+                name: "JobDetails",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    DutyId = table.Column<int>(nullable: false),
-                    StaffId = table.Column<int>(nullable: false),
-                    JobId = table.Column<int>(nullable: true)
+                    JobId = table.Column<int>(nullable: false),
+                    StaffId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaskDetails", x => x.Id);
+                    table.PrimaryKey("PK_JobDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TaskDetails_Task_JobId",
+                        name: "FK_JobDetails_Job_JobId",
                         column: x => x.JobId,
-                        principalTable: "Task",
+                        principalTable: "Job",
                         principalColumn: "JobId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TaskDetails_Staffs_StaffId",
+                        name: "FK_JobDetails_Staffs_StaffId",
                         column: x => x.StaffId,
                         principalTable: "Staffs",
                         principalColumn: "StaffId",
@@ -330,13 +329,13 @@ namespace TourApi.Migrations
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskDetails_JobId",
-                table: "TaskDetails",
+                name: "IX_JobDetails_JobId",
+                table: "JobDetails",
                 column: "JobId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskDetails_StaffId",
-                table: "TaskDetails",
+                name: "IX_JobDetails_StaffId",
+                table: "JobDetails",
                 column: "StaffId");
 
             migrationBuilder.CreateIndex(
@@ -394,7 +393,7 @@ namespace TourApi.Migrations
                 name: "Hotels");
 
             migrationBuilder.DropTable(
-                name: "TaskDetails");
+                name: "JobDetails");
 
             migrationBuilder.DropTable(
                 name: "TourDetails");
@@ -409,7 +408,7 @@ namespace TourApi.Migrations
                 name: "Costs");
 
             migrationBuilder.DropTable(
-                name: "Task");
+                name: "Job");
 
             migrationBuilder.DropTable(
                 name: "Locations");
