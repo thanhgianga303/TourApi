@@ -101,5 +101,18 @@ namespace TourApi.Controllers
             await _repository.AddJobDetails(listJobDetails.ToList());
             return Ok(listJobDetails);
         }
+        [HttpPut("{staffid}")]
+        public async Task<IActionResult> UpdateJobDetails(int staffid, List<JobDetailsDTO> newlistJobDetailsDto)
+        {
+            var newlistJobDetails = _mapper.Map<IEnumerable<JobDetailsDTO>, IEnumerable<JobDetails>>(newlistJobDetailsDto);
+            await _repository.UpdateJobDetails(staffid, newlistJobDetails.ToList());
+            return Ok(newlistJobDetails);
+        }
+        [HttpDelete("{staffid}")]
+        public async Task<IActionResult> DeleteJobDetails(int staffid)
+        {
+            await _repository.DeleteAllJobDetails(staffid);
+            return NoContent();
+        }
     }
 }
