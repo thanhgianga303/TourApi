@@ -7,7 +7,7 @@ namespace TourApi.DTOs
     {
         public int TourId { get; set; }
         public string TourName { get; set; }
-        public string TourCharacteristics { get; set; }
+        public string Description { get; set; }
         public int TypesOfTourismId { get; set; }
         public int TourPriceId { get; set; }
         public TypesOfTourism TypesOfTourism { get; set; }

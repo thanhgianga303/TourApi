@@ -21,9 +21,6 @@ namespace TourApi.Mapping
             CreateMap<Location, LocationDTO>();
             CreateMap<LocationDTO, Location>();
 
-            CreateMap<Hotel, HotelDTO>();
-            CreateMap<HotelDTO, Hotel>();
-
             CreateMap<Job, JobDTO>();
             CreateMap<JobDTO, Job>();
 

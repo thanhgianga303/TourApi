@@ -25,8 +25,11 @@ namespace TourApi.Migrations
                     b.Property<string>("CostName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("CostId");
 
@@ -63,6 +66,12 @@ namespace TourApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("DateOfBirhth")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("FullName")
                         .HasColumnType("TEXT");
 
@@ -78,31 +87,6 @@ namespace TourApi.Migrations
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("TourApi.Models.Hotel", b =>
-                {
-                    b.Property<int>("HotelId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("HotelName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("LocationId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("HotelId");
-
-                    b.HasIndex("LocationId");
-
-                    b.ToTable("Hotels");
                 });
 
             modelBuilder.Entity("TourApi.Models.Job", b =>
@@ -146,6 +130,9 @@ namespace TourApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Country")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("LocationName")
                         .HasColumnType("TEXT");
 
@@ -159,6 +146,12 @@ namespace TourApi.Migrations
                     b.Property<int>("StaffId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateOfBirhth")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FullName")
                         .HasColumnType("TEXT");
@@ -183,7 +176,7 @@ namespace TourApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("TourCharacteristics")
+                    b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TourName")
@@ -282,8 +275,8 @@ namespace TourApi.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
@@ -308,6 +301,9 @@ namespace TourApi.Migrations
                     b.Property<int>("NumberOfMembers")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ScheduleDetails")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
 
@@ -326,6 +322,9 @@ namespace TourApi.Migrations
                     b.Property<int>("TypesOfTourismId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("TypeName")
                         .HasColumnType("TEXT");
@@ -346,15 +345,6 @@ namespace TourApi.Migrations
                     b.HasOne("TourApi.Models.TouristGroup", "TouristGroup")
                         .WithMany("CostDetailsList")
                         .HasForeignKey("TouristGroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TourApi.Models.Hotel", b =>
-                {
-                    b.HasOne("TourApi.Models.Location", "Location")
-                        .WithMany("HotelList")
-                        .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

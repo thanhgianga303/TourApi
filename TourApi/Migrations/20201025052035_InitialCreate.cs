@@ -14,7 +14,8 @@ namespace TourApi.Migrations
                     CostId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CostName = table.Column<string>(nullable: true),
-                    Price = table.Column<int>(nullable: false)
+                    Price = table.Column<decimal>(nullable: false),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,6 +31,8 @@ namespace TourApi.Migrations
                     FullName = table.Column<string>(nullable: true),
                     IdentityCardNumber = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
+                    DateOfBirhth = table.Column<DateTime>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
                     Gender = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -56,7 +59,8 @@ namespace TourApi.Migrations
                 {
                     LocationId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    LocationName = table.Column<string>(nullable: true)
+                    LocationName = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -72,6 +76,8 @@ namespace TourApi.Migrations
                     FullName = table.Column<string>(nullable: true),
                     IdentityCardNumber = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
+                    DateOfBirhth = table.Column<DateTime>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
                     Gender = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -85,7 +91,7 @@ namespace TourApi.Migrations
                 {
                     TourPriceId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Price = table.Column<int>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false)
                 },
@@ -100,33 +106,12 @@ namespace TourApi.Migrations
                 {
                     TypesOfTourismId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    TypeName = table.Column<string>(nullable: true)
+                    TypeName = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TypesOfTourism", x => x.TypesOfTourismId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Hotels",
-                columns: table => new
-                {
-                    HotelId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    HotelName = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true),
-                    LocationId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Hotels", x => x.HotelId);
-                    table.ForeignKey(
-                        name: "FK_Hotels_Locations_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Locations",
-                        principalColumn: "LocationId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -162,7 +147,7 @@ namespace TourApi.Migrations
                     TourId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     TourName = table.Column<string>(nullable: true),
-                    TourCharacteristics = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
                     TypesOfTourismId = table.Column<int>(nullable: false),
                     TourPriceId = table.Column<int>(nullable: false)
                 },
@@ -215,11 +200,12 @@ namespace TourApi.Migrations
                 {
                     TouristGroupId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    TourId = table.Column<int>(nullable: false),
                     GroupName = table.Column<string>(nullable: true),
                     NumberOfMembers = table.Column<int>(nullable: false),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false),
-                    TourId = table.Column<int>(nullable: false)
+                    ScheduleDetails = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -324,11 +310,6 @@ namespace TourApi.Migrations
                 column: "TouristGroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Hotels_LocationId",
-                table: "Hotels",
-                column: "LocationId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_JobDetails_JobId",
                 table: "JobDetails",
                 column: "JobId");
@@ -388,9 +369,6 @@ namespace TourApi.Migrations
         {
             migrationBuilder.DropTable(
                 name: "CostDetails");
-
-            migrationBuilder.DropTable(
-                name: "Hotels");
 
             migrationBuilder.DropTable(
                 name: "JobDetails");
