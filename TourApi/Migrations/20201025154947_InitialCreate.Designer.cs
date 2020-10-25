@@ -9,7 +9,7 @@ using TourApi.Data;
 namespace TourApi.Migrations
 {
     [DbContext(typeof(TourContext))]
-    [Migration("20201025052035_InitialCreate")]
+    [Migration("20201025154947_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -205,6 +205,9 @@ namespace TourApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("InOrder")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("LocationId")
                         .HasColumnType("INTEGER");
 
@@ -229,10 +232,7 @@ namespace TourApi.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("GroupId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("TouristGroupId")
+                    b.Property<int>("TouristGroupId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -250,13 +250,10 @@ namespace TourApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("GroupId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("StaffId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("TouristGroupId")
+                    b.Property<int>("TouristGroupId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -406,7 +403,9 @@ namespace TourApi.Migrations
 
                     b.HasOne("TourApi.Models.TouristGroup", "TouristGroup")
                         .WithMany("TourDetailsOfCustomerList")
-                        .HasForeignKey("TouristGroupId");
+                        .HasForeignKey("TouristGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TourApi.Models.TourDetailsOfStaff", b =>
@@ -419,7 +418,9 @@ namespace TourApi.Migrations
 
                     b.HasOne("TourApi.Models.TouristGroup", "TouristGroup")
                         .WithMany("TourDetailsOfStaffList")
-                        .HasForeignKey("TouristGroupId");
+                        .HasForeignKey("TouristGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TourApi.Models.TouristGroup", b =>

@@ -6,8 +6,8 @@ namespace TourApi.DTOs
     {
         public int Id { get; set; }
         public int StaffId { get; set; }
-        public int TourId { get; set; }
-        public Tour Tour { get; set; }
+        public int TouristGroupId { get; set; }
+        public TouristGroup TouristGroup { get; set; }
         public Staff Staff { get; set; }
     }
 }

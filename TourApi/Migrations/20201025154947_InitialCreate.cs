@@ -175,7 +175,8 @@ namespace TourApi.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     TourId = table.Column<int>(nullable: false),
-                    LocationId = table.Column<int>(nullable: false)
+                    LocationId = table.Column<int>(nullable: false),
+                    InOrder = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -252,8 +253,7 @@ namespace TourApi.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CustomerId = table.Column<int>(nullable: false),
-                    GroupId = table.Column<int>(nullable: false),
-                    TouristGroupId = table.Column<int>(nullable: true)
+                    TouristGroupId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -269,7 +269,7 @@ namespace TourApi.Migrations
                         column: x => x.TouristGroupId,
                         principalTable: "TouristGroup",
                         principalColumn: "TouristGroupId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -279,8 +279,7 @@ namespace TourApi.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     StaffId = table.Column<int>(nullable: false),
-                    GroupId = table.Column<int>(nullable: false),
-                    TouristGroupId = table.Column<int>(nullable: true)
+                    TouristGroupId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -296,7 +295,7 @@ namespace TourApi.Migrations
                         column: x => x.TouristGroupId,
                         principalTable: "TouristGroup",
                         principalColumn: "TouristGroupId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
