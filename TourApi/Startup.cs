@@ -26,12 +26,24 @@ namespace TourApi
         {
             Configuration = configuration;
         }
-
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+                    {
+                        options.AddPolicy(MyAllowSpecificOrigins,
+                        builder =>
+                        {
+                            builder.WithOrigins("http://127.0.0.1:3006",
+                                                "http://localhost:3006")
+                                                .AllowAnyHeader()
+                                                .AllowAnyMethod()
+                                                .AllowCredentials();
+                        });
+                    });
             services.AddControllers().AddNewtonsoftJson(options =>
                              options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); ;
             services.AddDbContext<TourContext>(options =>
@@ -60,6 +72,7 @@ namespace TourApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
