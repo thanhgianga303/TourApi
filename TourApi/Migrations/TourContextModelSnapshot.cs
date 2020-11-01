@@ -221,48 +221,6 @@ namespace TourApi.Migrations
                     b.ToTable("TourDetails");
                 });
 
-            modelBuilder.Entity("TourApi.Models.TourDetailsOfCustomer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("TouristGroupId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("TouristGroupId");
-
-                    b.ToTable("TourDetailsOfCustomer");
-                });
-
-            modelBuilder.Entity("TourApi.Models.TourDetailsOfStaff", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("StaffId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("TouristGroupId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StaffId");
-
-                    b.HasIndex("TouristGroupId");
-
-                    b.ToTable("TourDetailsOfStaff");
-                });
-
             modelBuilder.Entity("TourApi.Models.TourPrice", b =>
                 {
                     b.Property<int>("TourPriceId")
@@ -312,6 +270,48 @@ namespace TourApi.Migrations
                     b.HasIndex("TourId");
 
                     b.ToTable("TouristGroup");
+                });
+
+            modelBuilder.Entity("TourApi.Models.TouristGroupDetailsOfCustomer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TouristGroupId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("TouristGroupId");
+
+                    b.ToTable("TouristGroupDetailsOfCustomer");
+                });
+
+            modelBuilder.Entity("TourApi.Models.TouristGroupDetailsOfStaff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TouristGroupId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StaffId");
+
+                    b.HasIndex("TouristGroupId");
+
+                    b.ToTable("TouristGroupDetailsOfStaff");
                 });
 
             modelBuilder.Entity("TourApi.Models.TypesOfTourism", b =>
@@ -391,41 +391,41 @@ namespace TourApi.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TourApi.Models.TourDetailsOfCustomer", b =>
-                {
-                    b.HasOne("TourApi.Models.Customer", "Customer")
-                        .WithMany("TourDetailsOfCustomerList")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TourApi.Models.TouristGroup", "TouristGroup")
-                        .WithMany("TourDetailsOfCustomerList")
-                        .HasForeignKey("TouristGroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TourApi.Models.TourDetailsOfStaff", b =>
-                {
-                    b.HasOne("TourApi.Models.Staff", "Staff")
-                        .WithMany("TourDetailsOfStaffList")
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TourApi.Models.TouristGroup", "TouristGroup")
-                        .WithMany("TourDetailsOfStaffList")
-                        .HasForeignKey("TouristGroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("TourApi.Models.TouristGroup", b =>
                 {
                     b.HasOne("TourApi.Models.Tour", "Tour")
                         .WithMany("TouristGroup")
                         .HasForeignKey("TourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TourApi.Models.TouristGroupDetailsOfCustomer", b =>
+                {
+                    b.HasOne("TourApi.Models.Customer", "Customer")
+                        .WithMany("TouristGroupDetailsOfCustomerList")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TourApi.Models.TouristGroup", "TouristGroup")
+                        .WithMany("TouristGroupDetailsOfCustomerList")
+                        .HasForeignKey("TouristGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TourApi.Models.TouristGroupDetailsOfStaff", b =>
+                {
+                    b.HasOne("TourApi.Models.Staff", "Staff")
+                        .WithMany("TouristGroupDetailsOfStaffList")
+                        .HasForeignKey("StaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TourApi.Models.TouristGroup", "TouristGroup")
+                        .WithMany("TouristGroupDetailsOfStaffList")
+                        .HasForeignKey("TouristGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

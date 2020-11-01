@@ -2,7 +2,7 @@ using TourApi.Models;
 
 namespace TourApi.DTOs
 {
-    public class TourDetailsOfCustomerDTO
+    public class TouristGroupDetailsOfCustomerDTO
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }

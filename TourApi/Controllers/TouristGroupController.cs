@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -91,6 +92,21 @@ namespace TourApi.Controllers
             {
                 return NotFound();
             }
+        }
+        [HttpPut("{touristgroupid}")]
+        public async Task<IActionResult> UpdateTourDetailsOfStaff(int touristgroupid, List<TouristGroupDetailsOfStaffDTO> newListTouristGroupDetailsOfStaffDto)
+        {
+            if (await TouristGroupExists(touristgroupid))
+            {
+                var newListTouristGroupDetailsOfStaff = _mapper.Map<IEnumerable<TouristGroupDetailsOfStaffDTO>, IEnumerable<TouristGroupDetailsOfStaff>>(newListTouristGroupDetailsOfStaffDto);
+                await _repository.UpdateTouristGroupDetailsOfStaff(touristgroupid, newListTouristGroupDetailsOfStaff.ToList());
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+
         }
     }
 }

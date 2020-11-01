@@ -18,8 +18,8 @@ namespace TourApi.Data
         public DbSet<JobDetails> JobDetails { get; set; }
         public DbSet<Tour> Tours { get; set; }
         public DbSet<TourDetails> TourDetails { get; set; }
-        public DbSet<TourDetailsOfCustomer> TourDetailsOfCustomer { get; set; }
-        public DbSet<TourDetailsOfStaff> TourDetailsOfStaff { get; set; }
+        public DbSet<TouristGroupDetailsOfCustomer> TouristGroupDetailsOfCustomer { get; set; }
+        public DbSet<TouristGroupDetailsOfStaff> TouristGroupDetailsOfStaff { get; set; }
         public DbSet<TouristGroup> TouristGroups { get; set; }
         public DbSet<TouristGroup> TourPrices { get; set; }
         public DbSet<TouristGroup> TypesOfTourism { get; set; }

@@ -15,7 +15,7 @@ namespace TourApi.DTOs
         public int TourId { get; set; }
         public Tour Tour { get; set; }
         public List<CostDetails> CostDetailsList { get; set; }
-        public List<TourDetailsOfStaff> TourDetailsOfStaffList { get; set; }
-        public List<TourDetailsOfCustomer> TourDetailsOfCustomerList { get; set; }
+        public List<TouristGroupDetailsOfStaff> TouristGroupDetailsOfStaffList { get; set; }
+        public List<TouristGroupDetailsOfCustomer> TouristGroupDetailsOfCustomerList { get; set; }
     }
 }

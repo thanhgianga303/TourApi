@@ -6,8 +6,8 @@ namespace TourApi.Models.IRepository
 {
     public interface ICustomerRepository : IRepository<Customer>
     {
-        Task AddTourDetailsOfCustomer(TourDetailsOfCustomer tourDetailsOfCustomer);
+        Task AddTourDetailsOfCustomer(TouristGroupDetailsOfCustomer touristGroupDetailsOfCustomer);
         Task DeleteTourDetailsOfCustomer(int id);
-        Task<TourDetailsOfCustomer> GetTourDetailsOfCustomer(int id);
+        Task<TouristGroupDetailsOfCustomer> GetTouristGroupDetailsOfCustomer(int id);
     }
 }

@@ -36,11 +36,11 @@ namespace TourApi.Mapping
             CreateMap<TourDetails, TourDetailsDTO>();
             CreateMap<TourDetailsDTO, TourDetails>();
 
-            CreateMap<TourDetailsOfCustomer, TourDetailsOfCustomerDTO>();
-            CreateMap<TourDetailsOfCustomerDTO, TourDetailsOfCustomer>();
+            CreateMap<TouristGroupDetailsOfCustomer, TouristGroupDetailsOfCustomerDTO>();
+            CreateMap<TouristGroupDetailsOfCustomerDTO, TouristGroupDetailsOfCustomer>();
 
-            CreateMap<TourDetailsOfStaff, TourDetailsOfStaffDTO>();
-            CreateMap<TourDetailsOfStaffDTO, TourDetailsOfStaff>();
+            CreateMap<TouristGroupDetailsOfStaff, TouristGroupDetailsOfStaffDTO>();
+            CreateMap<TouristGroupDetailsOfStaffDTO, TouristGroupDetailsOfStaff>();
 
             CreateMap<TouristGroup, TouristGroupDTO>();
             CreateMap<TouristGroupDTO, TouristGroup>();

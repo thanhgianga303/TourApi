@@ -39,7 +39,7 @@ namespace TourApi.Controllers
         {
             var customer = _mapper.Map<CustomerDTO, Customer>(customerDto);
             await _repository.Add(customer);
-            await _repository.AddTourDetailsOfCustomer(new TourDetailsOfCustomer
+            await _repository.AddTourDetailsOfCustomer(new TouristGroupDetailsOfCustomer
             {
                 CustomerId = customer.CustomerId,
                 TouristGroupId = groupid
@@ -100,7 +100,7 @@ namespace TourApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTourDetailsOfCustomer(int id)
         {
-            var tourDetailsOfCustomer = _repository.GetTourDetailsOfCustomer(id);
+            var tourDetailsOfCustomer = _repository.GetTouristGroupDetailsOfCustomer(id);
             if (tourDetailsOfCustomer != null)
             {
                 await _repository.Delete(id);

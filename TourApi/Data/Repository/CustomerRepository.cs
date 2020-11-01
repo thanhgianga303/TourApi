@@ -15,20 +15,20 @@ namespace TourApi.Data.Repository
         {
             _context = context;
         }
-        public async Task AddTourDetailsOfCustomer(TourDetailsOfCustomer tourDetailsOfCustomer)
+        public async Task AddTourDetailsOfCustomer(TouristGroupDetailsOfCustomer touristGroupDetailsOfCustomer)
         {
-            await _context.AddAsync(tourDetailsOfCustomer);
+            await _context.AddAsync(touristGroupDetailsOfCustomer);
             await _context.SaveChangesAsync();
         }
-        public async Task<TourDetailsOfCustomer> GetTourDetailsOfCustomer(int id)
+        public async Task<TouristGroupDetailsOfCustomer> GetTouristGroupDetailsOfCustomer(int id)
         {
-            var tourDetailsOfCustomer = _context.TourDetailsOfCustomer.Where(t => t.Id == id);
-            return await tourDetailsOfCustomer.FirstOrDefaultAsync();
+            var touristGroupDetailsOfCustomer = _context.TouristGroupDetailsOfCustomer.Where(t => t.Id == id);
+            return await touristGroupDetailsOfCustomer.FirstOrDefaultAsync();
         }
         public async Task DeleteTourDetailsOfCustomer(int id)
         {
-            var tourDetailsOfCustomer = await _context.TourDetailsOfCustomer.FindAsync(id);
-            _context.TourDetailsOfCustomer.Remove(tourDetailsOfCustomer);
+            var touristGroupDetailsOfCustomer = await _context.TouristGroupDetailsOfCustomer.FindAsync(id);
+            _context.TouristGroupDetailsOfCustomer.Remove(touristGroupDetailsOfCustomer);
             await _context.SaveChangesAsync();
         }
     }

@@ -7,6 +7,6 @@ namespace TourApi.DTOs
     {
         public int StaffId { get; set; }
         public List<JobDetails> JobDetailsList { get; set; }
-        public List<TourDetailsOfStaff> TourDetailsOfStaffList { get; set; }
+        public List<TouristGroupDetailsOfStaff> TourDetailsOfStaffList { get; set; }
     }
 }

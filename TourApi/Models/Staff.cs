@@ -6,6 +6,6 @@ namespace TourApi.Models
     {
         public int StaffId { get; set; }
         public virtual List<JobDetails> JobDetailsList { get; set; }
-        public virtual List<TourDetailsOfStaff> TourDetailsOfStaffList { get; set; }
+        public virtual List<TouristGroupDetailsOfStaff> TouristGroupDetailsOfStaffList { get; set; }
     }
 }

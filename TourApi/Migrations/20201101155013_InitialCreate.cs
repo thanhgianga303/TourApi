@@ -247,7 +247,7 @@ namespace TourApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TourDetailsOfCustomer",
+                name: "TouristGroupDetailsOfCustomer",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -257,15 +257,15 @@ namespace TourApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TourDetailsOfCustomer", x => x.Id);
+                    table.PrimaryKey("PK_TouristGroupDetailsOfCustomer", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TourDetailsOfCustomer_Customers_CustomerId",
+                        name: "FK_TouristGroupDetailsOfCustomer_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "CustomerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TourDetailsOfCustomer_TouristGroup_TouristGroupId",
+                        name: "FK_TouristGroupDetailsOfCustomer_TouristGroup_TouristGroupId",
                         column: x => x.TouristGroupId,
                         principalTable: "TouristGroup",
                         principalColumn: "TouristGroupId",
@@ -273,7 +273,7 @@ namespace TourApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TourDetailsOfStaff",
+                name: "TouristGroupDetailsOfStaff",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -283,15 +283,15 @@ namespace TourApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TourDetailsOfStaff", x => x.Id);
+                    table.PrimaryKey("PK_TouristGroupDetailsOfStaff", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TourDetailsOfStaff_Staffs_StaffId",
+                        name: "FK_TouristGroupDetailsOfStaff_Staffs_StaffId",
                         column: x => x.StaffId,
                         principalTable: "Staffs",
                         principalColumn: "StaffId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TourDetailsOfStaff_TouristGroup_TouristGroupId",
+                        name: "FK_TouristGroupDetailsOfStaff_TouristGroup_TouristGroupId",
                         column: x => x.TouristGroupId,
                         principalTable: "TouristGroup",
                         principalColumn: "TouristGroupId",
@@ -329,29 +329,29 @@ namespace TourApi.Migrations
                 column: "TourId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TourDetailsOfCustomer_CustomerId",
-                table: "TourDetailsOfCustomer",
-                column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TourDetailsOfCustomer_TouristGroupId",
-                table: "TourDetailsOfCustomer",
-                column: "TouristGroupId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TourDetailsOfStaff_StaffId",
-                table: "TourDetailsOfStaff",
-                column: "StaffId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TourDetailsOfStaff_TouristGroupId",
-                table: "TourDetailsOfStaff",
-                column: "TouristGroupId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_TouristGroup_TourId",
                 table: "TouristGroup",
                 column: "TourId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TouristGroupDetailsOfCustomer_CustomerId",
+                table: "TouristGroupDetailsOfCustomer",
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TouristGroupDetailsOfCustomer_TouristGroupId",
+                table: "TouristGroupDetailsOfCustomer",
+                column: "TouristGroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TouristGroupDetailsOfStaff_StaffId",
+                table: "TouristGroupDetailsOfStaff",
+                column: "StaffId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TouristGroupDetailsOfStaff_TouristGroupId",
+                table: "TouristGroupDetailsOfStaff",
+                column: "TouristGroupId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tours_TourPriceId",
@@ -376,10 +376,10 @@ namespace TourApi.Migrations
                 name: "TourDetails");
 
             migrationBuilder.DropTable(
-                name: "TourDetailsOfCustomer");
+                name: "TouristGroupDetailsOfCustomer");
 
             migrationBuilder.DropTable(
-                name: "TourDetailsOfStaff");
+                name: "TouristGroupDetailsOfStaff");
 
             migrationBuilder.DropTable(
                 name: "Costs");

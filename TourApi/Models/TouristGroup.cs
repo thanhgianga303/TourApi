@@ -14,7 +14,7 @@ namespace TourApi.Models
         public string ScheduleDetails { get; set; }
         public virtual Tour Tour { get; set; }
         public virtual List<CostDetails> CostDetailsList { get; set; }
-        public virtual List<TourDetailsOfStaff> TourDetailsOfStaffList { get; set; }
-        public virtual List<TourDetailsOfCustomer> TourDetailsOfCustomerList { get; set; }
+        public virtual List<TouristGroupDetailsOfStaff> TouristGroupDetailsOfStaffList { get; set; }
+        public virtual List<TouristGroupDetailsOfCustomer> TouristGroupDetailsOfCustomerList { get; set; }
     }
 }
