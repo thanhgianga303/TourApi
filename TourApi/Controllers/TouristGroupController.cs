@@ -106,7 +106,64 @@ namespace TourApi.Controllers
             {
                 return NotFound();
             }
+        }
+        private async Task<bool> costDetailsExists(int id)
+        {
+            var costDetails = await _repository.GetCostDetails(id);
+            if (costDetails != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateCostDetails(CostDetailsDTO costDetailsDto)
+        {
+            var costDetails = _mapper.Map<CostDetailsDTO, CostDetails>(costDetailsDto);
+            await _repository.AddCostDetails(costDetails);
+            return Ok(costDetails);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCostDetails(int id, CostDetailsDTO costDetailsDTO)
+        {
+            if (id != costDetailsDTO.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var costDetails = _mapper.Map<CostDetailsDTO, CostDetails>(costDetailsDTO);
+                await _repository.UpdateCostDetails(costDetails);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!await costDetailsExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
 
+            }
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCostDetails(int id)
+        {
+            if (await costDetailsExists(id))
+            {
+                await _repository.DeleteCostDetails(id);
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }

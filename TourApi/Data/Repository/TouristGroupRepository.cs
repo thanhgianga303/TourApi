@@ -21,5 +21,26 @@ namespace TourApi.Data.Repository
             await _context.TouristGroupDetailsOfStaff.AddRangeAsync(newList);
             await _context.SaveChangesAsync();
         }
+        public async Task AddCostDetails(CostDetails costDetails)
+        {
+            await _context.AddAsync(costDetails);
+            await _context.SaveChangesAsync();
+        }
+        public async Task DeleteCostDetails(int id)
+        {
+            var costDetails = await _context.CostDetails.FindAsync(id);
+            _context.CostDetails.Remove(costDetails);
+            await _context.SaveChangesAsync();
+        }
+        public async Task UpdateCostDetails(CostDetails costDetails)
+        {
+            _context.CostDetails.Update(costDetails);
+            await _context.SaveChangesAsync();
+        }
+        public async Task<CostDetails> GetCostDetails(int id)
+        {
+            var costDetails = await _context.CostDetails.FindAsync(id);
+            return costDetails;
+        }
     }
 }
