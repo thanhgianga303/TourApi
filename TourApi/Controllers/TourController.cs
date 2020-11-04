@@ -91,5 +91,62 @@ namespace TourApi.Controllers
                 return false;
             }
         }
+        private async Task<bool> TourDetailsExists(int id)
+        {
+            var tourDetails = await _repository.GetTourDetails(id);
+            if (tourDetails != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateTourDetails(TourDetailsDTO tourDetailsDto)
+        {
+            var tourDetails = _mapper.Map<TourDetailsDTO, TourDetails>(tourDetailsDto);
+            await _repository.AddTourDetails(tourDetails);
+            return Ok(tourDetails);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateTourDetails(int id, TourDetailsDTO tourDetailsDto)
+        {
+            if (id != tourDetailsDto.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var tourDetails = _mapper.Map<TourDetailsDTO, TourDetails>(tourDetailsDto);
+                await _repository.UpdateTourDetails(tourDetails);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!await TourDetailsExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTourDetails(int id)
+        {
+            if (await TourDetailsExists(id))
+            {
+                await _repository.DeleteTourDetails(id);
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
