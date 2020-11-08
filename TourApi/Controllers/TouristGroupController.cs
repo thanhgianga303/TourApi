@@ -107,6 +107,20 @@ namespace TourApi.Controllers
                 return NotFound();
             }
         }
+        [HttpPut("{touristgroupid}")]
+        public async Task<IActionResult> UpdateTourDetailsOfCustomer(int touristgroupid, List<TouristGroupDetailsOfCustomerDTO> newListTouristGroupDetailsOfCustomerDto)
+        {
+            if (await TouristGroupExists(touristgroupid))
+            {
+                var newListTouristGroupDetailsOfCustomer = _mapper.Map<IEnumerable<TouristGroupDetailsOfCustomerDTO>, IEnumerable<TouristGroupDetailsOfCustomer>>(newListTouristGroupDetailsOfCustomerDto);
+                await _repository.UpdateTouristGroupDetailsOfCustomer(touristgroupid, newListTouristGroupDetailsOfCustomer.ToList());
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
         private async Task<bool> costDetailsExists(int id)
         {
             var costDetails = await _repository.GetCostDetails(id);

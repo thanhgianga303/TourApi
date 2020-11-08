@@ -21,6 +21,13 @@ namespace TourApi.Data.Repository
             await _context.TouristGroupDetailsOfStaff.AddRangeAsync(newList);
             await _context.SaveChangesAsync();
         }
+        public async Task UpdateTouristGroupDetailsOfCustomer(int touristGroupId, List<TouristGroupDetailsOfCustomer> newList)
+        {
+            var listTouristGroupDetailsOfCustomer = _context.TouristGroupDetailsOfCustomer.Where(t => t.TouristGroupId == touristGroupId);
+            _context.TouristGroupDetailsOfCustomer.RemoveRange(listTouristGroupDetailsOfCustomer);
+            await _context.TouristGroupDetailsOfCustomer.AddRangeAsync(newList);
+            await _context.SaveChangesAsync();
+        }
         public async Task AddCostDetails(CostDetails costDetails)
         {
             await _context.AddAsync(costDetails);
