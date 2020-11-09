@@ -7,7 +7,6 @@ namespace TourApi.DTOs
     {
         public int CostId { get; set; }
         public string CostName { get; set; }
-        public decimal Price { get; set; }
         public string Description { get; set; }
         public List<CostDetails> CostDetailsList { get; set; }
     }

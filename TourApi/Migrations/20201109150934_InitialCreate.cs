@@ -14,7 +14,6 @@ namespace TourApi.Migrations
                     CostId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CostName = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: false),
                     Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -60,7 +59,7 @@ namespace TourApi.Migrations
                     LocationId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     LocationName = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true)
+                    City = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -227,7 +226,8 @@ namespace TourApi.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     TouristGroupId = table.Column<int>(nullable: false),
                     CostId = table.Column<int>(nullable: false),
-                    Note = table.Column<string>(nullable: true)
+                    Price = table.Column<decimal>(nullable: false),
+                    CostDetailsName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

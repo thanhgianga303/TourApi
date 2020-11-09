@@ -15,6 +15,16 @@ namespace TourApi.Data.Repository
         {
             _context = context;
         }
+        public async Task<IEnumerable<Location>> GetAllLocation(string cityName = null)
+        {
+            var locations = from l in _context.Locations
+                            select l; ;
+            if (!string.IsNullOrEmpty(cityName))
+            {
+                locations = _context.Locations.Where(l => l.City.ToLower().Contains(cityName));
+            }
+            return await locations.ToListAsync();
+        }
 
     }
 }

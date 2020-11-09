@@ -6,6 +6,6 @@ namespace TourApi.Models.IRepository
 {
     public interface ILocationRepository : IRepository<Location>
     {
-
+        Task<IEnumerable<Location>> GetAllLocation(string cityName);
     }
 }

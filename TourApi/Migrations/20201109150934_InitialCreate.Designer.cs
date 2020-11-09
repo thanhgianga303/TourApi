@@ -9,7 +9,7 @@ using TourApi.Data;
 namespace TourApi.Migrations
 {
     [DbContext(typeof(TourContext))]
-    [Migration("20201101155013_InitialCreate")]
+    [Migration("20201109150934_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,9 +30,6 @@ namespace TourApi.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("CostId");
 
                     b.ToTable("Costs");
@@ -44,10 +41,13 @@ namespace TourApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CostDetailsName")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("CostId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Note")
+                    b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("TouristGroupId")
@@ -132,7 +132,7 @@ namespace TourApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Country")
+                    b.Property<string>("City")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LocationName")

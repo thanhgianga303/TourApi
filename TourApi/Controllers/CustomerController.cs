@@ -34,16 +34,11 @@ namespace TourApi.Controllers
             var customerDTO = _mapper.Map<Customer, CustomerDTO>(customer);
             return Ok(customerDTO);
         }
-        [HttpPost("{groupid}")]
-        public async Task<IActionResult> CreateCustomer(int groupid, CustomerDTO customerDto)
+        [HttpPost]
+        public async Task<IActionResult> CreateCustomer(CustomerDTO customerDto)
         {
             var customer = _mapper.Map<CustomerDTO, Customer>(customerDto);
             await _repository.Add(customer);
-            await _repository.AddTourDetailsOfCustomer(new TouristGroupDetailsOfCustomer
-            {
-                CustomerId = customer.CustomerId,
-                TouristGroupId = groupid
-            });
             return CreatedAtAction(nameof(GetCustomer), new { id = customer.CustomerId }, customer);
         }
         [HttpPut("{id}")]
@@ -88,20 +83,6 @@ namespace TourApi.Controllers
         public async Task<IActionResult> DeleteCustomer(int id)
         {
             if (await CustomerExists(id))
-            {
-                await _repository.Delete(id);
-                return NoContent();
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTourDetailsOfCustomer(int id)
-        {
-            var tourDetailsOfCustomer = _repository.GetTouristGroupDetailsOfCustomer(id);
-            if (tourDetailsOfCustomer != null)
             {
                 await _repository.Delete(id);
                 return NoContent();

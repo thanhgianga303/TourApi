@@ -6,7 +6,7 @@ namespace TourApi.Models
     {
         public int LocationId { get; set; }
         public string LocationName { get; set; }
-        public string Country { get; set; }
+        public string City { get; set; }
         public virtual List<TourDetails> TourDetailsList { get; set; }
     }
 }

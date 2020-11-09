@@ -23,13 +23,12 @@ namespace TourApi.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LocationDTO>>> GetAllLocation()
+        public async Task<ActionResult<IEnumerable<LocationDTO>>> GetAllLocation(string city)
         {
-            var locations = await _locationRepository.GetAll();
+            var locations = await _locationRepository.GetAllLocation(city);
             var locationsDTO = _mapper.Map<IEnumerable<Location>, IEnumerable<LocationDTO>>(locations);
             return Ok(locationsDTO);
         }
-
         [HttpGet("{id}")]
         public async Task<ActionResult<LocationDTO>> GetLocation(int id)
         {
