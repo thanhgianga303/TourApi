@@ -85,21 +85,6 @@ namespace TourApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TourPrice",
-                columns: table => new
-                {
-                    TourPriceId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Price = table.Column<decimal>(nullable: false),
-                    StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TourPrice", x => x.TourPriceId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TypesOfTourism",
                 columns: table => new
                 {
@@ -147,18 +132,11 @@ namespace TourApi.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     TourName = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    TypesOfTourismId = table.Column<int>(nullable: false),
-                    TourPriceId = table.Column<int>(nullable: false)
+                    TypesOfTourismId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tours", x => x.TourId);
-                    table.ForeignKey(
-                        name: "FK_Tours_TourPrice_TourPriceId",
-                        column: x => x.TourPriceId,
-                        principalTable: "TourPrice",
-                        principalColumn: "TourPriceId",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Tours_TypesOfTourism_TypesOfTourismId",
                         column: x => x.TypesOfTourismId,
@@ -212,6 +190,28 @@ namespace TourApi.Migrations
                     table.PrimaryKey("PK_TouristGroup", x => x.TouristGroupId);
                     table.ForeignKey(
                         name: "FK_TouristGroup_Tours_TourId",
+                        column: x => x.TourId,
+                        principalTable: "Tours",
+                        principalColumn: "TourId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TourPrice",
+                columns: table => new
+                {
+                    TourPriceId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    TourId = table.Column<int>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TourPrice", x => x.TourPriceId);
+                    table.ForeignKey(
+                        name: "FK_TourPrice_Tours_TourId",
                         column: x => x.TourId,
                         principalTable: "Tours",
                         principalColumn: "TourId",
@@ -354,9 +354,10 @@ namespace TourApi.Migrations
                 column: "TouristGroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tours_TourPriceId",
-                table: "Tours",
-                column: "TourPriceId");
+                name: "IX_TourPrice_TourId",
+                table: "TourPrice",
+                column: "TourId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tours_TypesOfTourismId",
@@ -382,6 +383,9 @@ namespace TourApi.Migrations
                 name: "TouristGroupDetailsOfStaff");
 
             migrationBuilder.DropTable(
+                name: "TourPrice");
+
+            migrationBuilder.DropTable(
                 name: "Costs");
 
             migrationBuilder.DropTable(
@@ -401,9 +405,6 @@ namespace TourApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tours");
-
-            migrationBuilder.DropTable(
-                name: "TourPrice");
 
             migrationBuilder.DropTable(
                 name: "TypesOfTourism");

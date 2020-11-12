@@ -182,15 +182,10 @@ namespace TourApi.Migrations
                     b.Property<string>("TourName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("TourPriceId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("TypesOfTourismId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("TourId");
-
-                    b.HasIndex("TourPriceId");
 
                     b.HasIndex("TypesOfTourismId");
 
@@ -236,7 +231,13 @@ namespace TourApi.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("TourId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("TourPriceId");
+
+                    b.HasIndex("TourId")
+                        .IsUnique();
 
                     b.ToTable("TourPrice");
                 });
@@ -363,12 +364,6 @@ namespace TourApi.Migrations
 
             modelBuilder.Entity("TourApi.Models.Tour", b =>
                 {
-                    b.HasOne("TourApi.Models.TourPrice", "TourPrice")
-                        .WithMany("TourList")
-                        .HasForeignKey("TourPriceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("TourApi.Models.TypesOfTourism", "TypesOfTourism")
                         .WithMany("TourList")
                         .HasForeignKey("TypesOfTourismId")
@@ -387,6 +382,15 @@ namespace TourApi.Migrations
                     b.HasOne("TourApi.Models.Tour", "Tour")
                         .WithMany("TourDetailsList")
                         .HasForeignKey("TourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TourApi.Models.TourPrice", b =>
+                {
+                    b.HasOne("TourApi.Models.Tour", "Tour")
+                        .WithOne("TourPrice")
+                        .HasForeignKey("TourApi.Models.TourPrice", "TourId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

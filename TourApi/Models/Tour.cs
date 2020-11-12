@@ -8,7 +8,6 @@ namespace TourApi.Models
         public string TourName { get; set; }
         public string Description { get; set; }
         public int TypesOfTourismId { get; set; }
-        public int TourPriceId { get; set; }
         public virtual TypesOfTourism TypesOfTourism { get; set; }
         public virtual TourPrice TourPrice { get; set; }
         public virtual List<TourDetails> TourDetailsList { get; set; }
