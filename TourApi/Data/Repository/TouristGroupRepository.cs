@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TourApi.Infrastructure;
 using TourApi.Models;
 using TourApi.Models.IRepository;
@@ -27,6 +28,11 @@ namespace TourApi.Data.Repository
             _context.TouristGroupDetailsOfCustomer.RemoveRange(listTouristGroupDetailsOfCustomer);
             await _context.TouristGroupDetailsOfCustomer.AddRangeAsync(newList);
             await _context.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<TouristGroup>> GetAllTouristGroupByTourId(int id)
+        {
+            var TouristGroups = await _context.TouristGroups.Where(x => x.TourId == id).ToListAsync();
+            return TouristGroups;
         }
         public async Task AddCostDetails(CostDetails costDetails)
         {

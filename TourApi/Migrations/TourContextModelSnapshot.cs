@@ -236,8 +236,7 @@ namespace TourApi.Migrations
 
                     b.HasKey("TourPriceId");
 
-                    b.HasIndex("TourId")
-                        .IsUnique();
+                    b.HasIndex("TourId");
 
                     b.ToTable("TourPrice");
                 });
@@ -389,8 +388,8 @@ namespace TourApi.Migrations
             modelBuilder.Entity("TourApi.Models.TourPrice", b =>
                 {
                     b.HasOne("TourApi.Models.Tour", "Tour")
-                        .WithOne("TourPrice")
-                        .HasForeignKey("TourApi.Models.TourPrice", "TourId")
+                        .WithMany("TourPriceList")
+                        .HasForeignKey("TourId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

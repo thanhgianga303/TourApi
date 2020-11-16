@@ -356,8 +356,7 @@ namespace TourApi.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_TourPrice_TourId",
                 table: "TourPrice",
-                column: "TourId",
-                unique: true);
+                column: "TourId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tours_TypesOfTourismId",

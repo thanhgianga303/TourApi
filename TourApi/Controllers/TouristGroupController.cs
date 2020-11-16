@@ -35,6 +35,20 @@ namespace TourApi.Controllers
             var touristGroupDTO = _mapper.Map<TouristGroup, TouristGroupDTO>(touristGroup);
             return Ok(touristGroupDTO);
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<TouristGroupDTO>>> GetAllTouristGroupByTourId(int id)
+        {
+            var touristGroups = await _repository.GetAllTouristGroupByTourId(id);
+            var touristGroupsDTO = _mapper.Map<IEnumerable<TouristGroup>, IEnumerable<TouristGroupDTO>>(touristGroups);
+            foreach (var item in touristGroupsDTO)
+            {
+                item.TotalCost = item.methodTotalCost();
+                item.Proceeds = item.methodProceeds();
+                item.Profit = item.methodProfit();
+                item.PriceForTouristGroup = item.methodPriceForTouristGroup();
+            }
+            return Ok(touristGroupsDTO);
+        }
         [HttpPost]
         public async Task<IActionResult> CreateTouristGroup(TouristGroupDTO touristGroupDto)
         {

@@ -9,7 +9,7 @@ using TourApi.Data;
 namespace TourApi.Migrations
 {
     [DbContext(typeof(TourContext))]
-    [Migration("20201112125522_InitialCreate")]
+    [Migration("20201114130241_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -238,8 +238,7 @@ namespace TourApi.Migrations
 
                     b.HasKey("TourPriceId");
 
-                    b.HasIndex("TourId")
-                        .IsUnique();
+                    b.HasIndex("TourId");
 
                     b.ToTable("TourPrice");
                 });
@@ -391,8 +390,8 @@ namespace TourApi.Migrations
             modelBuilder.Entity("TourApi.Models.TourPrice", b =>
                 {
                     b.HasOne("TourApi.Models.Tour", "Tour")
-                        .WithOne("TourPrice")
-                        .HasForeignKey("TourApi.Models.TourPrice", "TourId")
+                        .WithMany("TourPriceList")
+                        .HasForeignKey("TourId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

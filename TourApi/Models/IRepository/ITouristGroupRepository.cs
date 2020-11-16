@@ -9,6 +9,7 @@ namespace TourApi.Models.IRepository
         // Cập nhật chi tiết chi phí
         // Task Update(CostDetails costDetails);
         //Cập nhật chi tiết TourDetailsOfStaff
+        Task<IEnumerable<TouristGroup>> GetAllTouristGroupByTourId(int id);
         Task UpdateTouristGroupDetailsOfStaff(int touristGroupId, List<TouristGroupDetailsOfStaff> newListTouristGroupDetailsOfStaff);
         Task UpdateTouristGroupDetailsOfCustomer(int touristGroupId, List<TouristGroupDetailsOfCustomer> newListTouristGroupDetailsOfCustomer);
         Task AddCostDetails(CostDetails costDetails);
