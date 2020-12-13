@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TourApi.DTOs;
 using TourApi.Models;
 using TourApi.Models.IRepository;
-
+using System.Linq;
 namespace TourApi.Controllers
 {
     [ApiController]
@@ -24,7 +25,20 @@ namespace TourApi.Controllers
         public async Task<ActionResult<IEnumerable<TourDTO>>> GetAllTour()
         {
             var tours = await _repository.GetAll();
+
             var toursDTO = _mapper.Map<IEnumerable<Tour>, IEnumerable<TourDTO>>(tours);
+            foreach (var tour in toursDTO)
+            {
+                foreach (var touristGroup in tour.TouristGroup)
+                {
+                   tour.TotalCost += Math.Round(touristGroup.CostDetailsList.Sum(x => x.Price));
+                   DateTime startDate = touristGroup.StartDate;
+                   var tourPrice = tour.TourPriceList.FirstOrDefault(x => startDate >= x.StartDate && startDate <= x.EndDate);
+                   tour.Proceeds += tourPrice.Price*touristGroup.NumberOfMembers;
+                   
+                }
+                tour.Profit += tour.Proceeds - tour.TotalCost;
+            }
             return Ok(toursDTO);
         }
         [HttpGet("{id}")]

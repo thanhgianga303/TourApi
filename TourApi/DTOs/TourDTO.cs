@@ -16,13 +16,11 @@ namespace TourApi.DTOs
         public List<TourDetails> TourDetailsList { get; set; }
         public List<TouristGroup> TouristGroup { get; set; }
 
-        // public decimal TotalCost { get; set; }
+        public decimal TotalCost { get; set; }
 
-        // public decimal PriceForTouristGroup { get; set; }
+        public decimal Proceeds { get; set; }
 
-        // public decimal Proceeds { get; set; }
-
-        // public decimal Profit { get; set; }
+        public decimal Profit { get; set; }
 
          
     }
