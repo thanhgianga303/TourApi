@@ -10,6 +10,6 @@ namespace TourApi.DTOs
         public decimal Price { get; set; }
         public string CostDetailsName { get; set; }
         public TouristGroup TouristGroup { get; set; }
-        public Cost Cost { get; set; }
+        //public Cost Cost { get; set; }
     }
 }

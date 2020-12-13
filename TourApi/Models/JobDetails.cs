@@ -5,7 +5,7 @@ namespace TourApi.Models
         public int Id { get; set; }
         public int JobId { get; set; }
         public int StaffId { get; set; }
-        public virtual Staff Staff { get; set; }
-        public virtual Job Job { get; set; }
+        //public virtual Staff Staff { get; set; }
+        //public virtual Job Job { get; set; }
     }
 }

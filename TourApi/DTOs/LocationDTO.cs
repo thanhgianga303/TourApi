@@ -8,6 +8,6 @@ namespace TourApi.DTOs
         public int LocationId { get; set; }
         public string LocationName { get; set; }
         public string City { get; set; }
-        public List<TourDetails> TourDetailsList { get; set; }
+       // public List<TourDetails> TourDetailsList { get; set; }
     }
 }
