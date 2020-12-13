@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dC4J7WybXnDzjXs8TuZOw0Uiz/vEQxYXa5PgnJJF33c4ZwDw+zcgDVg5ifiLVg9nU2ytZnY43Mxr7qrvXe00xA==",
+  "dgSpecHash": "gYGGo8RuhykRFbvCdJqVpa0Zp9KiCeDjlR/nPIWgrqyReb7Hh2Ssm92OXAbDgwb/AQAKK3NhjVoB2J+oZyN3YA==",
   "success": true,
-  "projectFilePath": "D:\\TourApi\\TourApi\\TourApi.csproj",
+  "projectFilePath": "D:\\TourApi\\tourapi\\TourApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thanh\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\thanh\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.0.1\\automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",

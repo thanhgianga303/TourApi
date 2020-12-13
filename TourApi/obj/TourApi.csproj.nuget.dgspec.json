@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TourApi\\TourApi\\TourApi.csproj": {}
+    "D:\\TourApi\\tourapi\\TourApi.csproj": {}
   },
   "projects": {
-    "D:\\TourApi\\TourApi\\TourApi.csproj": {
+    "D:\\TourApi\\tourapi\\TourApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TourApi\\TourApi\\TourApi.csproj",
+        "projectUniqueName": "D:\\TourApi\\tourapi\\TourApi.csproj",
         "projectName": "TourApi",
-        "projectPath": "D:\\TourApi\\TourApi\\TourApi.csproj",
+        "projectPath": "D:\\TourApi\\tourapi\\TourApi.csproj",
         "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
-        "outputPath": "D:\\TourApi\\TourApi\\obj\\",
+        "outputPath": "D:\\TourApi\\tourapi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

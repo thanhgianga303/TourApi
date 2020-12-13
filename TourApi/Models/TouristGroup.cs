@@ -12,7 +12,7 @@ namespace TourApi.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string ScheduleDetails { get; set; }
-       // public virtual Tour Tour { get; set; }
+        public virtual Tour Tour { get; set; }
         public virtual List<CostDetails> CostDetailsList { get; set; }
         public virtual List<TouristGroupDetailsOfStaff> TouristGroupDetailsOfStaffList { get; set; }
         public virtual List<TouristGroupDetailsOfCustomer> TouristGroupDetailsOfCustomerList { get; set; }
